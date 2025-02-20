@@ -1,17 +1,18 @@
 # Building MMDVM_HS_Hat Firmware v1.6.2
+
 ## Richie Jarvis - G1ZNE - 2025-02-20
 1. Make sure you are using the generic MMDVM_HS_Hat:
+
         * Copy and run this commandline:
 
-        ```
-        sudo wpsd-detectmodem
-        ```
+        `sudo wpsd-detectmodem`
 
         * The output you will see will be similar to this:
 
-        ```pi-star@wpsd:~ $ sudo wpsd-detectmodem
-           Detected MMDVM_HS Port: /dev/ttyAMA0 (GPIO) Baud: 115200 Protocol: Unknown
-          Modem Data: MMDVM_HS_Hat-v1.5.2 20201108 14.7456MHz ADF7021 FW by CA6JAU GitID #89daa2000600056590000094E545047
+        ```
+        pi-star@wpsd:~ $ sudo wpsd-detectmodem
+        Detected MMDVM_HS Port: /dev/ttyAMA0 (GPIO) Baud: 115200 Protocol: Unknown
+        Modem Data: MMDVM_HS_Hat-v1.5.2 20201108 14.7456MHz ADF7021 FW by CA6JAU GitID #89daa2000600056590000094E545047
         ```
 
         1. The bits to check:
