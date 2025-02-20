@@ -1,32 +1,42 @@
 # Building MMDVM_HS_Hat Firmware v1.6.2
+## Richie Jarvis - G1ZNE - 2025-02-20
 1. Make sure you are using the generic MMDVM_HS_Hat:
-        * Enter the following command:
+        * Copy and run this commandline:
+
         ```
         sudo wpsd-detectmodem
         ```
+
         * The output you will see will be similar to this:
+
         ```pi-star@wpsd:~ $ sudo wpsd-detectmodem
            Detected MMDVM_HS Port: /dev/ttyAMA0 (GPIO) Baud: 115200 Protocol: Unknown
           Modem Data: MMDVM_HS_Hat-v1.5.2 20201108 14.7456MHz ADF7021 FW by CA6JAU GitID #89daa2000600056590000094E545047
         ```
+
         1. The bits to check:
                 1. `Detected MMDVM_HS`
                 1. `Port: /dev/ttyAMA0 (GPIO) Baud: 115200` <- should match your settings in WPSD Configuration screen
                 1. `ADF7021 FW by CA6JAU GitID`
                 1. My MMDVM currently has v1.5.2 loaded: `MMDVM_HS_Hat-v1.5.2` - we want to update to v1.6.2
 1. Install the build requirements 
+
         ```
         sudo apt-get update
         sudo apt-get install gcc-arm-none-eabi gdb-arm-none-eabi libstdc++-arm-none-eabi-newlib libnewlib-arm-none-eabi
         ```
+        
 1. Update your Raspbian install
-        * These commands 
         * Note: Versions/exact output will be different!  Don't worry about it.
+        * Copy and run this commandline:
+        
         
         ```
         sudo apt update ; sudo apt upgrade -y ; sudo apt autoremove -y
         ```
+        
         * Output will be similar to this:
+        
         ```
         pi-star@wpsd:~ $ sudo apt update ; sudo apt upgrade -y ; sudo apt autoremove -y
         Get:1 http://archive.raspberrypi.com/debian bookworm InRelease [39.3 kB]
@@ -134,13 +144,19 @@
         Removing libcamera0.3:armhf (0.3.2+rpt20241119-1) ...
         Processing triggers for libc-bin (2.36-9+rpt2+deb12u9) ...
         ```
+        
 1. Install the build tools necessary for the firmware build:
-        * Note: Versions/exact output will be different!  Don't worry about it.
-        * Note: This will take a while - go make a cup of tea/coffee/beverage of your choice
+
+        * Copy and run this commandline:
+        
         ```
         sudo apt install -y gcc-arm-none-eabi gdb-arm-none-eabi libstdc++-arm-none-eabi-newlib libnewlib-arm-none-eabi
         ```
+        
         * Output will be similar to this:
+        * Note: Versions/exact output will be different!  Don't worry about it.
+        * Note: This will take a while - go make a cup of tea/coffee/beverage of your choice
+        
         ```
         pi-star@wpsd:~ $ sudo apt install -y gcc-arm-none-eabi gdb-arm-none-eabi libstdc++-arm-none-eabi-newlib libnewlib-arm-none-eabi
         Reading package lists... Done
