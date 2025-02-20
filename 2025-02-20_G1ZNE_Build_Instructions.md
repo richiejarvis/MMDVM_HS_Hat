@@ -41,9 +41,18 @@
       ```
         
 1. Update your Raspbian install
-    - _Note: Versions/exact output will be different!  Don't worry about it._
-    - Copy and run this commandline:
-        
+
+      _**Note:** Versions and exact output will be different!  Don't worry about it._
+      
+      <span style="color:red">
+      
+      **Very IMPORTANT: Ignore the message "The following packages have been kept back:"**
+      
+      **If you attempt to fix it, you may well break your WSPD installation.**
+      
+      </span>
+    
+    - Copy and run this commandline:      
         
         ```
         sudo apt update ; sudo apt upgrade -y ; sudo apt autoremove -y
@@ -146,7 +155,6 @@
       Setting up libcamera-apps-lite (1.6.0-2) ...
       Processing triggers for libc-bin (2.36-9+rpt2+deb12u9) ...
       Processing triggers for man-db (2.11.2-2) ...
-      pi-star@wpsd:~ $ sudo apt autoremove -y
       Reading package lists... Done
       Building dependency tree... Done
       Reading state information... Done
@@ -158,7 +166,7 @@
       Removing libcamera0.3:armhf (0.3.2+rpt20241119-1) ...
       Processing triggers for libc-bin (2.36-9+rpt2+deb12u9) ...
       ```
-        
+      
 1. Install the build tools necessary for the firmware build:
 
     - Copy and run this commandline:
@@ -226,15 +234,19 @@
         Processing triggers for man-db (2.11.2-2) ...
         Processing triggers for libc-bin (2.36-9+rpt2+deb12u9) ...
         ```
-1. Clone my repo with these instructions
-    - Copy and run this commandline:
+1. We now need to download the firmware source.
 
+    - Copy and run this commandline to get a copy of the firmware source repository ready to build
+    
       ```
       cd ~
       mkdir git
       cd git
       ls
       git clone https://github.com/richiejarvis/MMDVM_HS_Hat.git
+      cd ~/git/MMDVM_HS_Hat
+      git submodule init
+      git submodule update
       ```
         
     - You will see output similar to this:
@@ -251,5 +263,10 @@
         Receiving objects: 100% (783/783), 42.29 MiB | 1.94 MiB/s, done.
         Resolving deltas: 100% (464/464), done.
         Updating files: 100% (66/66), done.
+        pi-star@wpsd:~ $ cd git/MMDVM_HS_Hat/
         ```
+1. Prepare the repository for Building
+    - Copy and run this commandline:
+    
          
+1. 
