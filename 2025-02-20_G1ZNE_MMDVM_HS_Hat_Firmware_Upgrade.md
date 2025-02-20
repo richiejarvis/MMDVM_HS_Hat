@@ -1,7 +1,7 @@
 # Building MMDVM_HS_Hat Firmware v1.6.2
 
 ## Richie Jarvis - G1ZNE - 2025-02-20
-1. Make sure you are using the generic MMDVM_HS_Hat:
+1. Check what MMDVM Hat you are using:
 
   - Copy and run this commandline:
 
@@ -15,15 +15,18 @@
     Modem Data: MMDVM_HS_Hat-v1.5.2 20201108 14.7456MHz ADF7021 FW by CA6JAU GitID #89daa2000600056590000094E545047
     ```
 
-1. The bits to check:
-
-    - Detected HAT Type:
+  - Detected HAT Type:
     
-      `Detected MMDVM_HS`
+    `Detected MMDVM_HS`
     
-    - Port settings - these should match your settings in WPSD Configuration screen
+  - Port settings - these should match your settings in WPSD Configuration screen
     
       `Port: /dev/ttyAMA0 (GPIO) Baud: 115200`
+    
+    This screen in the configuration section of the WPSD Web Interface (http://wpsd.local/)
+    
+    ![alt-text](./WPSD_MMDVM_Config_Screen.png)
+    
     - The Hardware type
     
       `ADF7021`
