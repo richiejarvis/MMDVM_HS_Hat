@@ -2,9 +2,10 @@
 
 ## Richie Jarvis - G1ZNE - 2025-02-20
 
-1. Find your WPSD machine's IP address from the http://wpsd.local/
+1. We need to use the commandline to carry out this process.  We need the devices IP address.
+    - Find your WPSD machine's IP address from the http://wpsd.local/
 
-      ![alt-text](./WPSD_IP_Address.jpg)   
+        ![alt-text](./WPSD_IP_Address.jpg)   
 
 1. Login to your WPSD machine via SSH
 
@@ -54,9 +55,9 @@
     
         `ADF7021`
       
-      - My MMDVM currently has v1.5.2 loaded - in this example I am updating to v1.6.2
+      - My MMDVM currently has v1.5.2 loaded - in this example I am updating to v1.6.1
     
-        `MMDVM_HS_Hat-v1.5.2`
+        `MMDVM_HS_Hat-v1.5.2 20201108 14.7456MHz ADF7021`
 
 1. Make sure your MMDVM settings listed in the output from the `wpsd-detectmodem` command above match the settings in the WPSD Configuration screen here: http://wpsd.local/admin/configure.php
     
