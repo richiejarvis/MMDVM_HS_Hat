@@ -9,8 +9,9 @@
 1. Login to your WPSD machine via SSH
 
     - Download and Install PuTTY from here: https://www.putty.org/
-    - 
+    - Enter the IP address where shown in the picture and click "Open" as marked
     
+        ![alt-text](./PuTTY_Login.jpg)
        
 1. Update your Raspbian OS
 
