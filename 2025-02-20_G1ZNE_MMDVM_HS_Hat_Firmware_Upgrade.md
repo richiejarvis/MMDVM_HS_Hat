@@ -1,7 +1,26 @@
-# Building MMDVM_HS_Hat Firmware v1.6.2
+# Updating your MMDVM Firmware
 
 ## Richie Jarvis - G1ZNE - 2025-02-20
-1. Check what MMDVM Hat you are using:
+       
+1. Update your Raspbian OS
+
+    - It is worth keeping your Raspbian (the OS that WPSD uses) updated regularly.  You can re-run the commandline given periodically to do so.
+    
+    - It will take a while.  Go make a coffee/tea/beverage of your choice.  It will connect to the internet and download everything needed, then install it.  When it returns to the commandline prompt `pi-star@wpsd:~ $` it is done.
+    
+      <span style="color:red">
+      **Very IMPORTANT: Ignore the message "The following packages have been kept back:"**
+      
+      **If you attempt to fix it, you may well break your WSPD installation.**     
+      </span>
+    
+    - Copy and run this commandline - the output is long and boring...      
+        
+        ```
+        sudo apt update ; sudo apt upgrade -y ; sudo apt autoremove -y
+        ```    
+
+1. Check what MMDVM Hat you are using and that the serial port and baudrate are correct.
 
   - Copy and run this commandline:
 
@@ -14,35 +33,30 @@
     Detected MMDVM_HS Port: /dev/ttyAMA0 (GPIO) Baud: 115200 Protocol: Unknown
     Modem Data: MMDVM_HS_Hat-v1.5.2 20201108 14.7456MHz ADF7021 FW by CA6JAU GitID #89daa2000600056590000094E545047
     ```
-
-  - Detected HAT Type:
+  - Here are the important pieces of info you will need to upgrade your MMDVM Hat firmware
+    - Detected HAT Type:
     
-    `Detected MMDVM_HS`
+      `Detected MMDVM_HS`
     
-  - Port settings - these should match your settings in WPSD Configuration screen
-    
-      `Port: /dev/ttyAMA0 (GPIO) Baud: 115200`
-    
-    This screen in the configuration section of the WPSD Web Interface (http://wpsd.local/)
-    
-    ![alt-text](./WPSD_MMDVM_Config_Screen.png)
     
     - The Hardware type
     
       `ADF7021`
+      
     - My MMDVM currently has v1.5.2 loaded - in this example I am updating to v1.6.2
     
       `MMDVM_HS_Hat-v1.5.2`
-      
-1. Install the build requirements 
-    - Note: Versions/exact output will be different!  Don't worry about it.
-    - Copy and run this commandline:
 
-      ```
-      sudo apt-get update
-      sudo apt-get install gcc-arm-none-eabi gdb-arm-none-eabi libstdc++-arm-none-eabi-newlib libnewlib-arm-none-eabi
-      ```
-        
+2. Make sure your MMDVM settings listed in the output from the `wpsd-detectmodem` command above match the settings in the WPSD Configuration screen here: http://wpsd.local/admin/configure.php
+    
+    - Output from `wpsd-detectmodem` 
+      
+      `Port: /dev/ttyAMA0 (GPIO) Baud: 115200`
+    
+    - Make sure the WPSD Webconfig screen reflects this information in these fields:
+    
+        ![alt-text](./WPSD_MMDVM_Config_Screen.jpg)     
+       
 1. Update your Raspbian install
 
       _**Note:** Versions and exact output will be different!  Don't worry about it._
@@ -169,115 +183,3 @@
       Removing libcamera0.3:armhf (0.3.2+rpt20241119-1) ...
       Processing triggers for libc-bin (2.36-9+rpt2+deb12u9) ...
       ```
-      
-1. Install the build tools necessary for the firmware build:
-
-    - Copy and run this commandline:
-        
-      ```
-      sudo apt install -y gcc-arm-none-eabi gdb-arm-none-eabi libstdc++-arm-none-eabi-newlib libnewlib-arm-none-eabi
-      ```
-      _Note1: *This will take a while - go make a cup of tea/coffee/beverage of your choice.*_\
-      _Note2: Versions/exact output will be different!  Don't worry about it._
-    - Output will be similar to this:    
-
-        ```
-        pi-star@wpsd:~ $ sudo apt install -y gcc-arm-none-eabi gdb-arm-none-eabi libstdc++-arm-none-eabi-newlib libnewlib-arm-none-eabi
-        Reading package lists... Done
-        Building dependency tree... Done
-        Reading state information... Done
-        Note, selecting 'gdb-multiarch' instead of 'gdb-arm-none-eabi'
-        The following additional packages will be installed:
-          binutils-arm-none-eabi libnewlib-dev libstdc++-arm-none-eabi-dev
-        Suggested packages:
-          libnewlib-doc
-        The following NEW packages will be installed:
-          binutils-arm-none-eabi gcc-arm-none-eabi gdb-multiarch libnewlib-arm-none-eabi libnewlib-dev libstdc++-arm-none-eabi-dev
-          libstdc++-arm-none-eabi-newlib
-        0 upgraded, 7 newly installed, 0 to remove and 15 not upgraded.
-        Need to get 408 MB of archives.
-        After this operation, 2,469 MB of additional disk space will be used.
-        Get:5 http://raspbian.raspberrypi.com/raspbian bookworm/main armhf libnewlib-arm-none-eabi all 3.3.0-1.3+deb12u1 [45.4 MB]
-        Get:1 http://raspbian.raspberrypi.com/raspbian bookworm/main armhf binutils-arm-none-eabi armhf 2.39-8+rpi1+18 [2,173 kB]
-        Get:4 http://raspbian.raspberrypi.com/raspbian bookworm/main armhf libnewlib-dev all 3.3.0-1.3+deb12u1 [257 kB]
-        Get:2 http://www.mirrorservice.org/sites/archive.raspbian.org/raspbian bookworm/main armhf gcc-arm-none-eabi armhf 15:12.2.rel1-1 [42.4 MB]
-        Get:3 http://www.mirrorservice.org/sites/archive.raspbian.org/raspbian bookworm/main armhf gdb-multiarch armhf 13.1-3 [3,553 kB]
-        Get:6 http://raspbian.raspberrypi.com/raspbian bookworm/main armhf libstdc++-arm-none-eabi-dev all 15:12.2.rel1-1+23 [1,217 kB]
-        Get:7 http://raspbian.raspberrypi.com/raspbian bookworm/main armhf libstdc++-arm-none-eabi-newlib all 15:12.2.rel1-1+23 [313 MB]
-        Fetched 408 MB in 3min 18s (2,060 kB/s)
-        Selecting previously unselected package binutils-arm-none-eabi.
-        (Reading database ... 67155 files and directories currently installed.)
-        Preparing to unpack .../0-binutils-arm-none-eabi_2.39-8+rpi1+18_armhf.deb ...
-        Unpacking binutils-arm-none-eabi (2.39-8+rpi1+18) ...
-        Selecting previously unselected package gcc-arm-none-eabi.
-        Preparing to unpack .../1-gcc-arm-none-eabi_15%3a12.2.rel1-1_armhf.deb ...
-        Unpacking gcc-arm-none-eabi (15:12.2.rel1-1) ...
-        Selecting previously unselected package gdb-multiarch.
-        Preparing to unpack .../2-gdb-multiarch_13.1-3_armhf.deb ...
-        Unpacking gdb-multiarch (13.1-3) ...
-        Selecting previously unselected package libnewlib-dev.
-        Preparing to unpack .../3-libnewlib-dev_3.3.0-1.3+deb12u1_all.deb ...
-        Unpacking libnewlib-dev (3.3.0-1.3+deb12u1) ...
-        Selecting previously unselected package libnewlib-arm-none-eabi.
-        Preparing to unpack .../4-libnewlib-arm-none-eabi_3.3.0-1.3+deb12u1_all.deb ...
-        Unpacking libnewlib-arm-none-eabi (3.3.0-1.3+deb12u1) ...
-        Selecting previously unselected package libstdc++-arm-none-eabi-dev.
-        Preparing to unpack .../5-libstdc++-arm-none-eabi-dev_15%3a12.2.rel1-1+23_all.deb ...
-        Unpacking libstdc++-arm-none-eabi-dev (15:12.2.rel1-1+23) ...
-        Selecting previously unselected package libstdc++-arm-none-eabi-newlib.
-        Preparing to unpack .../6-libstdc++-arm-none-eabi-newlib_15%3a12.2.rel1-1+23_all.deb ...
-        Unpacking libstdc++-arm-none-eabi-newlib (15:12.2.rel1-1+23) ...
-        Setting up binutils-arm-none-eabi (2.39-8+rpi1+18) ...
-        Setting up gcc-arm-none-eabi (15:12.2.rel1-1) ...
-        Setting up libnewlib-dev (3.3.0-1.3+deb12u1) ...
-        Setting up gdb-multiarch (13.1-3) ...
-        Setting up libnewlib-arm-none-eabi (3.3.0-1.3+deb12u1) ...
-        Setting up libstdc++-arm-none-eabi-dev (15:12.2.rel1-1+23) ...
-        Setting up libstdc++-arm-none-eabi-newlib (15:12.2.rel1-1+23) ...
-        Processing triggers for man-db (2.11.2-2) ...
-        Processing triggers for libc-bin (2.36-9+rpt2+deb12u9) ...
-        ```
-1. We now need to download the firmware source.
-
-    - Copy and run this commandline to get a copy of the firmware source repository ready to build
-    
-      ```
-      cd ~
-      mkdir git
-      cd git
-      ls
-      git clone https://github.com/richiejarvis/MMDVM_HS_Hat.git
-      cd ~/git/MMDVM_HS_Hat
-      git submodule init
-      git submodule update
-      ```
-        
-    - You will see output similar to this:
-        ```
-        pi-star@wpsd:~ $ cd ~
-        pi-star@wpsd:~ $ mkdir git
-        pi-star@wpsd:~ $ cd git
-        pi-star@wpsd:~/git $ git clone https://github.com/richiejarvis/MMDVM_HS_Hat.git
-        Cloning into 'MMDVM_HS_Hat'...
-        remote: Enumerating objects: 783, done.
-        remote: Counting objects: 100% (39/39), done.
-        remote: Compressing objects: 100% (28/28), done.
-        remote: Total 783 (delta 14), reused 28 (delta 11), pack-reused 744 (from 1)
-        Receiving objects: 100% (783/783), 42.29 MiB | 1.94 MiB/s, done.
-        Resolving deltas: 100% (464/464), done.
-        Updating files: 100% (66/66), done.
-        pi-star@wpsd:~ $ cd git/MMDVM_HS_Hat/
-        ```
-1. Prepare the repository for Building
-    - Copy and run this commandline:
-      ```
-      git submodule init; git submodule update
-      ```
-    - The output should look similar to this:
-      ```
-      pi-star@wpsd:~/git/MMDVM_HS_Hat $ git submodule init; git submodule update
-      Submodule 'libraries/pkl' (https://github.com/esden/pretty-kicad-libs.git) registered for path 'libraries/pkl'
-      Cloning into '/home/pi-star/git/MMDVM_HS_Hat/libraries/pkl'...
-      Submodule path 'libraries/pkl': checked out '37a5a862b61527ad2c535c8b9a14c9720e6f6afb'
-      ```
-1. 
