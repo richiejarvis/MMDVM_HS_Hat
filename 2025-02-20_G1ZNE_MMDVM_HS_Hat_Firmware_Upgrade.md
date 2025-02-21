@@ -12,6 +12,12 @@
     - Enter the IP address where shown in the picture and click "Open" as marked
     
         ![alt-text](./PuTTY_Login.jpg)
+		
+	- The default username is `pi-star` and the default password is `raspberry`.  Enter these when prompted like the example below:
+	
+        ![alt-text](./PuTTY_UN_PW.jpg)
+	
+	
        
 1. Update your Raspbian OS
 
